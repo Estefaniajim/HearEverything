@@ -39,6 +39,17 @@ version = "7.1.2"
 
 [[package]]
 category = "main"
+description = "This client library is designed to support the Facebook Graph API and the official Facebook JavaScript SDK, which is the canonical way to implement Facebook authentication."
+name = "facebook-sdk"
+optional = false
+python-versions = "*"
+version = "2.0.0"
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
+category = "main"
 description = "gTTS (Google Text-to-Speech), a Python library and CLI tool to interface with Google Translate text-to-speech API"
 name = "gtts"
 optional = false
@@ -179,7 +190,7 @@ requests = ">=0.8.8"
 simplejson = "*"
 
 [metadata]
-content-hash = "51d2322c0b9d2cf8a3f6d2ff8eac3dafc84b44202b3189e73a1a96bb5de1ced7"
+content-hash = "93529dd8c6acb0f74b236751705f35f2661968d7324a5774b172db0586bda42f"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -199,6 +210,10 @@ chardet = [
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
     {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
+facebook-sdk = [
+    {file = "facebook-sdk-2.0.0.tar.gz", hash = "sha256:ddbcdd01187374f96e2c0ee574ad592673af49a9f895887bf1b112b9c8298e10"},
+    {file = "facebook_sdk-2.0.0-py2-none-any.whl", hash = "sha256:55b79292de407fb25be06594e0d7bcd36923c75499d5df18ff9da507d0fdb557"},
 ]
 gtts = [
     {file = "gTTS-2.1.1-py2-none-any.whl", hash = "sha256:feaebc9cf64138d68a05b965f2cdb9ea8ee962bbb8237d91c621bf910fc1123c"},

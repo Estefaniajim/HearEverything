@@ -2,6 +2,7 @@ from wit import Wit
 from gtts import gTTS 
 import os
 import app
+import facebook
 
 def wit():
   intro()
@@ -50,14 +51,16 @@ def action(command):
   elif command == "2002521963215550":
     youtube()
   elif command == "2988512127933065":
-    facebook()
+    face()
   elif command == "2939217719529274":
     google()
   else:
     print("Error")
 
-def facebook():
-  print("Posted")
+def face():
+  graph = facebook.GraphAPI(access_token='EAAEdD9qf2PYBAOSiSXo75VopnzQyuBGBbyhs5ZALdABloGcSTqUKZB4a7jZAQZAPYZBh0ucd6ZBE0pcYZCZBGybjjWPuzUXnFzpPB8tf0wPrgQHpZCAhyyAMeqtbTlyNtVN5lszs5SIuh2iDPubuAnZAZB4UZCtsM8oE1UPOXZBRshAi693QD1bxoG7jsHWKroOUJGzG5ZCZBoW6eZBOZAAZDZD', version='2.2')
+  graph.put_wall_post(message="hello world", profile_id='100027940875267')
+  print("posted!")
 
 def twitter():
   print("tweeted")
