@@ -8,9 +8,23 @@ def wit():
     results = client.speech(f, {'Content-Type': 'audio/wav'})
   command = None
   for elements in results["intents"]:
-    command = elements["name"]
+    command = elements["id"]
   print(command)
-  return command
+  return action(command)
+
+def action(command):
+  if command == "550491782311147":
+    test()
+  elif command == "552986868917206":
+    twitter()
+  elif command == "2002521963215550":
+    youtube()
+  elif command == "2988512127933065":
+    facebook()
+  elif command == "2939217719529274":
+    google()
+  else:
+    print("Error")
 
 def facebook():
   print("Posted")
@@ -20,6 +34,11 @@ def twitter():
 
 def youtube():
   print("played")
-  
+
+def google():
+  print("google")
+
 def test():
   print("at least test works")
+
+
