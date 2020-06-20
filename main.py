@@ -1,7 +1,17 @@
 from wit import Wit
+from gtts import gTTS 
+import os
 import app
 
+def intro():
+  text = "Welcome to HearEverything, please tell us what do you want to do"
+  language = "en"
+  speech = gTTS(text = text, lang = language, slow = False)
+  speech.save("text.mp3")
+  return os.system("start text.mp3")
+
 def wit():
+  intro()
   client = Wit("57R3JGXTZ6BF3ASCVE6G35OBBEJEMMYF")
   results = None
   with open('16-122828-0002.wav', 'rb') as f:

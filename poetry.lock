@@ -1,5 +1,20 @@
 [[package]]
 category = "main"
+description = "Screen-scraping library"
+name = "beautifulsoup4"
+optional = false
+python-versions = "*"
+version = "4.9.1"
+
+[package.dependencies]
+soupsieve = [">1.2", "<2.0"]
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
+category = "main"
 description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
@@ -13,6 +28,44 @@ name = "chardet"
 optional = false
 python-versions = "*"
 version = "3.0.4"
+
+[[package]]
+category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "7.1.2"
+
+[[package]]
+category = "main"
+description = "gTTS (Google Text-to-Speech), a Python library and CLI tool to interface with Google Translate text-to-speech API"
+name = "gtts"
+optional = false
+python-versions = ">=2.7"
+version = "2.1.1"
+
+[package.dependencies]
+beautifulsoup4 = "*"
+click = "*"
+gtts-token = ">=1.1.3"
+requests = "*"
+six = "*"
+
+[package.extras]
+docs = ["sphinx", "sphinx-autobuild", "sphinx-rtd-theme", "sphinx-click", "towncrier"]
+tests = ["pytest (>=3.9)", "pytest-cov", "flake8", "testfixtures", "mock", "six"]
+
+[[package]]
+category = "main"
+description = "Calculates a token to run the Google Translate text to speech"
+name = "gtts-token"
+optional = false
+python-versions = "*"
+version = "1.1.3"
+
+[package.dependencies]
+requests = "*"
 
 [[package]]
 category = "main"
@@ -69,6 +122,22 @@ version = "3.17.0"
 
 [[package]]
 category = "main"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "1.15.0"
+
+[[package]]
+category = "main"
+description = "A modern CSS selector implementation for Beautiful Soup."
+name = "soupsieve"
+optional = false
+python-versions = "*"
+version = "1.9.6"
+
+[[package]]
+category = "main"
 description = "Library for performing speech recognition, with support for several engines and APIs, online and offline."
 name = "speechrecognition"
 optional = false
@@ -110,10 +179,15 @@ requests = ">=0.8.8"
 simplejson = "*"
 
 [metadata]
-content-hash = "b3622f2a4ab0a4cbb9fbe9ceea6ad0ff9286155ca1f6f9ba026a56f715d1f949"
+content-hash = "51d2322c0b9d2cf8a3f6d2ff8eac3dafc84b44202b3189e73a1a96bb5de1ced7"
 python-versions = "^3.8"
 
 [metadata.files]
+beautifulsoup4 = [
+    {file = "beautifulsoup4-4.9.1-py2-none-any.whl", hash = "sha256:e718f2342e2e099b640a34ab782407b7b676f47ee272d6739e60b8ea23829f2c"},
+    {file = "beautifulsoup4-4.9.1-py3-none-any.whl", hash = "sha256:a6237df3c32ccfaee4fd201c8f5f9d9df619b93121d01353a64a73ce8c6ef9a8"},
+    {file = "beautifulsoup4-4.9.1.tar.gz", hash = "sha256:73cc4d115b96f79c7d77c1c7f7a0a8d4c57860d1041df407dd1aae7f07a77fd7"},
+]
 certifi = [
     {file = "certifi-2020.4.5.2-py2.py3-none-any.whl", hash = "sha256:9cd41137dc19af6a5e03b630eefe7d1f458d964d406342dd3edf625839b944cc"},
     {file = "certifi-2020.4.5.2.tar.gz", hash = "sha256:5ad7e9a056d25ffa5082862e36f119f7f7cec6457fa07ee2f8c339814b80c9b1"},
@@ -121,6 +195,18 @@ certifi = [
 chardet = [
     {file = "chardet-3.0.4-py2.py3-none-any.whl", hash = "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"},
     {file = "chardet-3.0.4.tar.gz", hash = "sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"},
+]
+click = [
+    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
+    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
+gtts = [
+    {file = "gTTS-2.1.1-py2-none-any.whl", hash = "sha256:feaebc9cf64138d68a05b965f2cdb9ea8ee962bbb8237d91c621bf910fc1123c"},
+    {file = "gTTS-2.1.1-py3-none-any.whl", hash = "sha256:e07e1729ca6d26c46d687bc29c321079a90719e1edb1ac25e0c229cd55b44539"},
+    {file = "gTTS-2.1.1.tar.gz", hash = "sha256:2ca2e880b560767d4ec74281d996ffdeda9012abc99968595b615e309a90cffe"},
+]
+gtts-token = [
+    {file = "gTTS-token-1.1.3.tar.gz", hash = "sha256:9d6819a85b813f235397ef931ad4b680f03d843c9b2a9e74dd95175a4bc012c5"},
 ]
 idna = [
     {file = "idna-2.9-py2.py3-none-any.whl", hash = "sha256:a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"},
@@ -174,6 +260,14 @@ simplejson = [
     {file = "simplejson-3.17.0.win32-py3.5.exe", hash = "sha256:7739940d68b200877a15a5ff5149e1599737d6dd55e302625650629350466418"},
     {file = "simplejson-3.17.0.win32-py3.6.exe", hash = "sha256:60aad424e47c5803276e332b2a861ed7a0d46560e8af53790c4c4fb3420c26c2"},
     {file = "simplejson-3.17.0.win32-py3.7.exe", hash = "sha256:1fbba86098bbfc1f85c5b69dc9a6d009055104354e0d9880bb00b692e30e0078"},
+]
+six = [
+    {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
+    {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
+]
+soupsieve = [
+    {file = "soupsieve-1.9.6-py2.py3-none-any.whl", hash = "sha256:feb1e937fa26a69e08436aad4a9037cd7e1d4c7212909502ba30701247ff8abd"},
+    {file = "soupsieve-1.9.6.tar.gz", hash = "sha256:7985bacc98c34923a439967c1a602dc4f1e15f923b6fcf02344184f86cc7efaa"},
 ]
 speechrecognition = [
     {file = "SpeechRecognition-3.8.1-py2.py3-none-any.whl", hash = "sha256:4d8f73a0c05ec70331c3bacaa89ecc06dfa8d9aba0899276664cda06ab597e8e"},
