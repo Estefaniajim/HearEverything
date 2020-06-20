@@ -1,0 +1,11 @@
+[tool]
+[tool.poetry]
+authors = ["Your Name <you@example.com>"]
+name = "root"
+version = "0.0.0"
+description = "hi"
+[tool.poetry.dependencies]
+python = "^3.8"
+SpeechRecognition = "^3.8.1"
+PyAudio = "^0.2.11"
+
