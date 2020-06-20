@@ -16,14 +16,6 @@ version = "3.0.4"
 
 [[package]]
 category = "main"
-description = "Docutils -- Python Documentation Utilities"
-name = "docutils"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "0.16"
-
-[[package]]
-category = "main"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
 optional = false
@@ -32,30 +24,14 @@ version = "2.9"
 
 [[package]]
 category = "main"
-description = "A software library for rapid development of hardware-accelerated multitouch applications."
-name = "kivy"
+description = "Library for building powerful interactive command lines in Python"
+name = "prompt-toolkit"
 optional = false
-python-versions = "*"
-version = "1.11.1"
+python-versions = ">=3.6.1"
+version = "3.0.5"
 
 [package.dependencies]
-Kivy-Garden = ">=0.1.4"
-docutils = "*"
-pygments = "*"
-
-[package.extras]
-tuio = ["oscpy"]
-
-[[package]]
-category = "main"
-description = "Garden tool for kivy flowers."
-name = "kivy-garden"
-optional = false
-python-versions = "*"
-version = "0.1.4"
-
-[package.dependencies]
-requests = "*"
+wcwidth = "*"
 
 [[package]]
 category = "main"
@@ -64,14 +40,6 @@ name = "pyaudio"
 optional = false
 python-versions = "*"
 version = "0.2.11"
-
-[[package]]
-category = "main"
-description = "Pygments is a syntax highlighting package written in Python."
-name = "pygments"
-optional = false
-python-versions = ">=3.5"
-version = "2.6.1"
 
 [[package]]
 category = "main"
@@ -90,6 +58,14 @@ urllib3 = ">=1.21.1,<1.25.0 || >1.25.0,<1.25.1 || >1.25.1,<1.26"
 [package.extras]
 security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)", "win-inet-pton"]
+
+[[package]]
+category = "main"
+description = "Simple, fast, extensible JSON encoder/decoder for Python"
+name = "simplejson"
+optional = false
+python-versions = ">=2.5, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "3.17.0"
 
 [[package]]
 category = "main"
@@ -112,8 +88,29 @@ brotli = ["brotlipy (>=0.6.0)"]
 secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "pyOpenSSL (>=0.14)", "ipaddress"]
 socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
+[[package]]
+category = "main"
+description = "Measures the displayed width of unicode strings in a terminal"
+name = "wcwidth"
+optional = false
+python-versions = "*"
+version = "0.2.4"
+
+[[package]]
+category = "main"
+description = "Wit SDK for Python"
+name = "wit"
+optional = false
+python-versions = "*"
+version = "6.0.0"
+
+[package.dependencies]
+prompt_toolkit = "*"
+requests = ">=0.8.8"
+simplejson = "*"
+
 [metadata]
-content-hash = "a4e88e169ae00ea5b42d00bfa1b3747e259d9336a72e15141a75784dd93c37bf"
+content-hash = "b3622f2a4ab0a4cbb9fbe9ceea6ad0ff9286155ca1f6f9ba026a56f715d1f949"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -125,35 +122,13 @@ chardet = [
     {file = "chardet-3.0.4-py2.py3-none-any.whl", hash = "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"},
     {file = "chardet-3.0.4.tar.gz", hash = "sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"},
 ]
-docutils = [
-    {file = "docutils-0.16-py2.py3-none-any.whl", hash = "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"},
-    {file = "docutils-0.16.tar.gz", hash = "sha256:c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc"},
-]
 idna = [
     {file = "idna-2.9-py2.py3-none-any.whl", hash = "sha256:a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"},
     {file = "idna-2.9.tar.gz", hash = "sha256:7588d1c14ae4c77d74036e8c22ff447b26d0fde8f007354fd48a7814db15b7cb"},
 ]
-kivy = [
-    {file = "Kivy-1.11.1-cp27-cp27m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:11e85eaf6efbfa2362a3334ffdad179a1b0ca8d255cca79eaa6a2765560d4982"},
-    {file = "Kivy-1.11.1-cp27-cp27m-win32.whl", hash = "sha256:5c3d0f2749522d62e9cce09cd54b2d823bf1b6b644ff1f627be49de6f3e3cba0"},
-    {file = "Kivy-1.11.1-cp27-cp27m-win_amd64.whl", hash = "sha256:f835462dd9aa491272552ef079b948a088598e2e95d68bb1d885d2c3f3d4e2c3"},
-    {file = "Kivy-1.11.1-cp35-cp35m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:090d3ded9835a17477cd93fbdaf0a7c42ff2218981cf198ded5ad8795bc74391"},
-    {file = "Kivy-1.11.1-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:b85ccf165050cbf2ee8447671eebbc222b369b40f0e0038dd9547d49a5e37373"},
-    {file = "Kivy-1.11.1-cp35-cp35m-win32.whl", hash = "sha256:4a5480cbf837d3780c77a4f61b32b56d22ae9f03845e7a89dd3eaef1ae5fd037"},
-    {file = "Kivy-1.11.1-cp35-cp35m-win_amd64.whl", hash = "sha256:a687602d90c4629dd036f577ca39acb76ba581370f9d915f3cab99be818ba8ad"},
-    {file = "Kivy-1.11.1-cp36-cp36m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:c36652caa7f6c327dee834cfc699d5962d346b7a53e54bd81abc17c314226d89"},
-    {file = "Kivy-1.11.1-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:b7ef6aad43a86d8df3fb865db864e354f2155a748019f8517f69f65c1a29cb64"},
-    {file = "Kivy-1.11.1-cp36-cp36m-win32.whl", hash = "sha256:f3bea6e4a21991827885d04127fc6d09a0e974ecfa12da7bf5faae93562ea102"},
-    {file = "Kivy-1.11.1-cp36-cp36m-win_amd64.whl", hash = "sha256:ece170514db3f49844a41e4c910ad9ce9bc46da6f47a49158e11266bdcc6e479"},
-    {file = "Kivy-1.11.1-cp37-cp37m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:8819a27a09871af451760cb69486ced52e830c8a0a37480f22ef5e692f12c05b"},
-    {file = "Kivy-1.11.1-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:1a1ff32f8a95f1e175198cbab81fcd2596783b180d4eafe63e87d171aa7fdb5e"},
-    {file = "Kivy-1.11.1-cp37-cp37m-win32.whl", hash = "sha256:815a5c0b3b72fcd81ca7b2aa0744087163ed03e4cf9ab4e7c9733cea99fc1571"},
-    {file = "Kivy-1.11.1-cp37-cp37m-win_amd64.whl", hash = "sha256:1d28b198a64c30db8d94a0488e85f3037af60d514ab0d7ad5ab45add3ab77090"},
-    {file = "Kivy-1.11.1.tar.gz", hash = "sha256:4d0e596f74271e901b551f77661dde238df4765484fce9f5d1c72e8022984e84"},
-]
-kivy-garden = [
-    {file = "Kivy Garden-0.1.4.tar.gz", hash = "sha256:9b7d9de5efacbcd0c4b3dd873b30622a86093c9965aa47b523c7a32f3eb34610"},
-    {file = "kivy-garden-0.1.4.tar.gz", hash = "sha256:c256f42788421273a08fbb0a228f0fb0e80dd86b629fb8c0920507f645be6c72"},
+prompt-toolkit = [
+    {file = "prompt_toolkit-3.0.5-py3-none-any.whl", hash = "sha256:df7e9e63aea609b1da3a65641ceaf5bc7d05e0a04de5bd45d05dbeffbabf9e04"},
+    {file = "prompt_toolkit-3.0.5.tar.gz", hash = "sha256:563d1a4140b63ff9dd587bda9557cffb2fe73650205ab6f4383092fb882e7dc8"},
 ]
 pyaudio = [
     {file = "PyAudio-0.2.11-cp27-cp27m-win32.whl", hash = "sha256:f78d543a98b730e64621ebf7f3e2868a79ade0a373882ef51c0293455ffa8e6e"},
@@ -166,13 +141,39 @@ pyaudio = [
     {file = "PyAudio-0.2.11-cp36-cp36m-win_amd64.whl", hash = "sha256:2a19bdb8ec1445b4f3e4b7b109e0e4cec1fd1f1ce588592aeb6db0b58d4fb3b0"},
     {file = "PyAudio-0.2.11.tar.gz", hash = "sha256:93bfde30e0b64e63a46f2fd77e85c41fd51182a4a3413d9edfaf9ffaa26efb74"},
 ]
-pygments = [
-    {file = "Pygments-2.6.1-py3-none-any.whl", hash = "sha256:ff7a40b4860b727ab48fad6360eb351cc1b33cbf9b15a0f689ca5353e9463324"},
-    {file = "Pygments-2.6.1.tar.gz", hash = "sha256:647344a061c249a3b74e230c739f434d7ea4d8b1d5f3721bc0f3558049b38f44"},
-]
 requests = [
     {file = "requests-2.24.0-py2.py3-none-any.whl", hash = "sha256:fe75cc94a9443b9246fc7049224f75604b113c36acb93f87b80ed42c44cbb898"},
     {file = "requests-2.24.0.tar.gz", hash = "sha256:b3559a131db72c33ee969480840fff4bb6dd111de7dd27c8ee1f820f4f00231b"},
+]
+simplejson = [
+    {file = "simplejson-3.17.0-cp27-cp27m-macosx_10_13_x86_64.whl", hash = "sha256:87d349517b572964350cc1adc5a31b493bbcee284505e81637d0174b2758ba17"},
+    {file = "simplejson-3.17.0-cp27-cp27m-win32.whl", hash = "sha256:1d1e929cdd15151f3c0b2efe953b3281b2fd5ad5f234f77aca725f28486466f6"},
+    {file = "simplejson-3.17.0-cp27-cp27m-win_amd64.whl", hash = "sha256:1ea59f570b9d4916ae5540a9181f9c978e16863383738b69a70363bc5e63c4cb"},
+    {file = "simplejson-3.17.0-cp33-cp33m-win32.whl", hash = "sha256:8027bd5f1e633eb61b8239994e6fc3aba0346e76294beac22a892eb8faa92ba1"},
+    {file = "simplejson-3.17.0-cp33-cp33m-win_amd64.whl", hash = "sha256:22a7acb81968a7c64eba7526af2cf566e7e2ded1cb5c83f0906b17ff1540f866"},
+    {file = "simplejson-3.17.0-cp34-cp34m-win32.whl", hash = "sha256:17163e643dbf125bb552de17c826b0161c68c970335d270e174363d19e7ea882"},
+    {file = "simplejson-3.17.0-cp34-cp34m-win_amd64.whl", hash = "sha256:0fe3994207485efb63d8f10a833ff31236ed27e3b23dadd0bf51c9900313f8f2"},
+    {file = "simplejson-3.17.0-cp35-cp35m-win32.whl", hash = "sha256:4cf91aab51b02b3327c9d51897960c554f00891f9b31abd8a2f50fd4a0071ce8"},
+    {file = "simplejson-3.17.0-cp35-cp35m-win_amd64.whl", hash = "sha256:fc9051d249dd5512e541f20330a74592f7a65b2d62e18122ca89bf71f94db748"},
+    {file = "simplejson-3.17.0-cp36-cp36m-macosx_10_13_x86_64.whl", hash = "sha256:86afc5b5cbd42d706efd33f280fec7bd7e2772ef54e3f34cf6b30777cd19a614"},
+    {file = "simplejson-3.17.0-cp36-cp36m-win32.whl", hash = "sha256:926bcbef9eb60e798eabda9cd0bbcb0fca70d2779aa0aa56845749d973eb7ad5"},
+    {file = "simplejson-3.17.0-cp36-cp36m-win_amd64.whl", hash = "sha256:daaf4d11db982791be74b23ff4729af2c7da79316de0bebf880fa2d60bcc8c5a"},
+    {file = "simplejson-3.17.0-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:9a126c3a91df5b1403e965ba63b304a50b53d8efc908a8c71545ed72535374a3"},
+    {file = "simplejson-3.17.0-cp37-cp37m-win32.whl", hash = "sha256:fc046afda0ed8f5295212068266c92991ab1f4a50c6a7144b69364bdee4a0159"},
+    {file = "simplejson-3.17.0-cp37-cp37m-win_amd64.whl", hash = "sha256:7cce4bac7e0d66f3a080b80212c2238e063211fe327f98d764c6acbc214497fc"},
+    {file = "simplejson-3.17.0.tar.gz", hash = "sha256:2b4b2b738b3b99819a17feaf118265d0753d5536049ea570b3c43b51c4701e81"},
+    {file = "simplejson-3.17.0.win-amd64-py2.7.exe", hash = "sha256:1d346c2c1d7dd79c118f0cc7ec5a1c4127e0c8ffc83e7b13fc5709ff78c9bb84"},
+    {file = "simplejson-3.17.0.win-amd64-py3.3.exe", hash = "sha256:5cfd495527f8b85ce21db806567de52d98f5078a8e9427b18e251c68bd573a26"},
+    {file = "simplejson-3.17.0.win-amd64-py3.4.exe", hash = "sha256:8de378d589eccbc75941e480b4d5b4db66f22e4232f87543b136b1f093fff342"},
+    {file = "simplejson-3.17.0.win-amd64-py3.5.exe", hash = "sha256:f4b64a1031acf33e281fd9052336d6dad4d35eee3404c95431c8c6bc7a9c0588"},
+    {file = "simplejson-3.17.0.win-amd64-py3.6.exe", hash = "sha256:ad8dd3454d0c65c0f92945ac86f7b9efb67fa2040ba1b0189540e984df904378"},
+    {file = "simplejson-3.17.0.win-amd64-py3.7.exe", hash = "sha256:229edb079d5dd81bf12da952d4d825bd68d1241381b37d3acf961b384c9934de"},
+    {file = "simplejson-3.17.0.win32-py2.7.exe", hash = "sha256:4fd5f79590694ebff8dc980708e1c182d41ce1fda599a12189f0ca96bf41ad70"},
+    {file = "simplejson-3.17.0.win32-py3.3.exe", hash = "sha256:d140e9376e7f73c1f9e0a8e3836caf5eec57bbafd99259d56979da05a6356388"},
+    {file = "simplejson-3.17.0.win32-py3.4.exe", hash = "sha256:da00675e5e483ead345429d4f1374ab8b949fba4429d60e71ee9d030ced64037"},
+    {file = "simplejson-3.17.0.win32-py3.5.exe", hash = "sha256:7739940d68b200877a15a5ff5149e1599737d6dd55e302625650629350466418"},
+    {file = "simplejson-3.17.0.win32-py3.6.exe", hash = "sha256:60aad424e47c5803276e332b2a861ed7a0d46560e8af53790c4c4fb3420c26c2"},
+    {file = "simplejson-3.17.0.win32-py3.7.exe", hash = "sha256:1fbba86098bbfc1f85c5b69dc9a6d009055104354e0d9880bb00b692e30e0078"},
 ]
 speechrecognition = [
     {file = "SpeechRecognition-3.8.1-py2.py3-none-any.whl", hash = "sha256:4d8f73a0c05ec70331c3bacaa89ecc06dfa8d9aba0899276664cda06ab597e8e"},
@@ -180,4 +181,11 @@ speechrecognition = [
 urllib3 = [
     {file = "urllib3-1.25.9-py2.py3-none-any.whl", hash = "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"},
     {file = "urllib3-1.25.9.tar.gz", hash = "sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527"},
+]
+wcwidth = [
+    {file = "wcwidth-0.2.4-py2.py3-none-any.whl", hash = "sha256:79375666b9954d4a1a10739315816324c3e73110af9d0e102d906fdb0aec009f"},
+    {file = "wcwidth-0.2.4.tar.gz", hash = "sha256:8c6b5b6ee1360b842645f336d9e5d68c55817c26d3050f46b235ef2bc650e48f"},
+]
+wit = [
+    {file = "wit-6.0.0.tar.gz", hash = "sha256:153b8ac147ee0cacae2a8776bf6d87d045c48e46ff0b4eb00acd6967d5183578"},
 ]
