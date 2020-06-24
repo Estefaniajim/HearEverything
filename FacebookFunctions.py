@@ -6,7 +6,6 @@ import os
 
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument("--disable-notifications")
 browser = webdriver.Chrome(options=chrome_options)
 browser.get('https://www.facebook.com/login.php?login_attempt=1&lwv=110')
@@ -38,7 +37,7 @@ def postingFace(post):
   postIt = browser.find_element_by_xpath("//button[contains(.,'Post')]")
   postIt.click()
   sleep(5)
-  browser.close()
+  browser.quit()
 
   
 

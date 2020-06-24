@@ -2,8 +2,7 @@ from wit import Wit
 from gtts import gTTS 
 import os
 import app
-
-import FacebookFunctions
+import TwitterFuctions
 witKey = os.getenv("witApiKey")
 
 
@@ -75,7 +74,5 @@ def google():
 
 def test():
   print("at least test works")
-
-
-FacebookFunctions.login()
-FacebookFunctions.postingFace("test 2")
+  
+TwitterFuctions.login()
