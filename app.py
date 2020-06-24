@@ -7,5 +7,4 @@ Label(root, text = 'Hear Everything', font =(
 photo = PhotoImage(file = r"mic.png") 
 photoimage = photo.subsample(3, 3) 
 Button(root, image = photoimage, command = main.wit).pack(side = TOP)
-main.face()
 mainloop() 

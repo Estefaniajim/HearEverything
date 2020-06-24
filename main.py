@@ -4,9 +4,11 @@ import os
 import app
 import facebook
 
+faceApiKey = os.getenv("faceKey")
+witKey = os.getenv("witApiKey")
 def wit():
   intro()
-  client = Wit("57R3JGXTZ6BF3ASCVE6G35OBBEJEMMYF")
+  client = Wit(witKey)
   results = None
   with open('16-122828-0002.wav', 'rb') as f:
     results = client.speech(f, {'Content-Type': 'audio/wav'})
@@ -58,7 +60,7 @@ def action(command):
     print("Error")
 
 def face():
-  graph = facebook.GraphAPI(access_token='EAAEdD9qf2PYBAOSiSXo75VopnzQyuBGBbyhs5ZALdABloGcSTqUKZB4a7jZAQZAPYZBh0ucd6ZBE0pcYZCZBGybjjWPuzUXnFzpPB8tf0wPrgQHpZCAhyyAMeqtbTlyNtVN5lszs5SIuh2iDPubuAnZAZB4UZCtsM8oE1UPOXZBRshAi693QD1bxoG7jsHWKroOUJGzG5ZCZBoW6eZBOZAAZDZD', version='2.2')
+  graph = facebook.GraphAPI(access_token=faceApiKey, version='2.2')
   graph.put_wall_post(message="hello world", profile_id='100027940875267')
   print("posted!")
 
