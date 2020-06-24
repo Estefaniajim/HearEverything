@@ -129,7 +129,6 @@ def face(command):
 
 def twitter(command):
   TwitterFuctions.login()
-  #TwitterFuctions.tweet(command)
 
 def google(command):
   return GoogleSearchFunctions.search(command)

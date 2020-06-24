@@ -28,6 +28,7 @@ def login():
   #login
   sleep(3)
   signinButton = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[3]/div/div').click()
+  browser.quit()
   
 def tweet(comment):
   into = browser.find_element_by_xpath('//*[@id="page-container"]/div/div[1]/form/div[2]/button')
