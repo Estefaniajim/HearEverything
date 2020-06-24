@@ -6,9 +6,9 @@ import speech_recognition as sr
 import TwitterFuctions
 import FacebookFunctions
 import GoogleSearchFunctions
+
 witKey = os.getenv("witApiKey")
 r = sr.Recognizer()
-
 
 def wit():
   intro()
@@ -133,3 +133,4 @@ def twitter(command):
 def google(command):
   return GoogleSearchFunctions.search(command)
 
+TwitterFuctions.login()
