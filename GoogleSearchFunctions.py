@@ -21,5 +21,7 @@ def search(info):
   time.sleep(5)
   browser.find_element_by_partial_link_text("Wikipedia").click()
   time.sleep(5)
+  text = browser.find_element_by_tag_name("body").get_attribute("innerText")
+  print(text)
   browser.quit()
 

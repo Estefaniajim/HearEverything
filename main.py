@@ -2,8 +2,8 @@ from wit import Wit
 from gtts import gTTS 
 import os
 import app
-import GoogleSearchFunctions
 
+import FacebookFunctions
 witKey = os.getenv("witApiKey")
 
 
@@ -76,4 +76,6 @@ def google():
 def test():
   print("at least test works")
 
-GoogleSearchFunctions.search("Bos primigenius taurus")
+
+FacebookFunctions.login()
+FacebookFunctions.postingFace("test 2")

@@ -14,6 +14,7 @@ browser.get('https://www.facebook.com/login.php?login_attempt=1&lwv=110')
 #this info is from a test user
 username = os.getenv("faceMail")
 password = os.getenv("facePassword")
+name = os.getenv("faceName")
 
 def login():
   #enter username
@@ -25,14 +26,23 @@ def login():
   #login
   logIn= browser.find_element_by_xpath("//button[@id='loginbutton']")
   logIn.click()
-  sleep(6)
+  sleep(5)
   print("login works")
 
 def postingFace(post):
+  browser.find_element_by_partial_link_text("Home").click()
+  sleep(5)
   status= browser.find_element_by_xpath("//textarea[@name='xhpc_message']")
   status.send_keys(post);
-  postbutton = browser.find_element_by_xpath("//button[contains(.,'Post')]")
-  postbutton.click()
+  sleep(5)
+  postIt = browser.find_element_by_xpath("//button[contains(.,'Post')]")
+  postIt.click()
+  sleep(5)
+  browser.close()
+
+  
+
+
 
 
 
