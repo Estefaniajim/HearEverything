@@ -6,6 +6,8 @@ import facebook
 
 faceApiKey = os.getenv("faceKey")
 witKey = os.getenv("witApiKey")
+faceToken = os.getenv("faceAppToken")
+
 def wit():
   intro()
   client = Wit(witKey)
@@ -15,8 +17,6 @@ def wit():
   commandID = None
   for elements in results["intents"]:
     commandID = elements["id"]
-  print(commandID)
-  readCommand(commandID)
   return action(commandID)
 
 def intro():
@@ -40,7 +40,7 @@ def readCommand(command):
   elif command == "2939217719529274":
     text = "google"
   else:
-    text = "Sorry I did not get that, can you repeit it again please?"
+    text = "Sorry I did not get that, can you repeat it again please?"
   speech = gTTS(text = text, lang = language, slow = False)
   speech.save("action.mp3")
   return os.system("start action.mp3")
@@ -60,8 +60,6 @@ def action(command):
     print("Error")
 
 def face():
-  graph = facebook.GraphAPI(access_token=faceApiKey, version='2.2')
-  graph.put_wall_post(message="hello world", profile_id='100027940875267')
   print("posted!")
 
 def twitter():
@@ -76,4 +74,4 @@ def google():
 def test():
   print("at least test works")
 
-
+face()
