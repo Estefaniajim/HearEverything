@@ -115,6 +115,7 @@ def action(command):
     resumeSpeech = gTTS(text = resume, lang = language, slow = False)
     resumeSpeech.save("research.mp3")
     os.system("start research.mp3")
+
   #Error
   else:
     text = "Sorry we got an error, we will have to start over"
