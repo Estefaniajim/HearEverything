@@ -5,6 +5,7 @@ import app
 import speech_recognition as sr
 import TwitterFuctions
 import FacebookFunctions
+import GoogleSearchFunctions
 witKey = os.getenv("witApiKey")
 r = sr.Recognizer()
 
@@ -94,11 +95,32 @@ def action(command):
   #Google
   elif command == "2939217719529274":
 
-    google()
-
+    text = "Beware, this is going to be loooooooooooong. Prepare to take notes"
+    speech = gTTS(text = text, lang = language, slow = False)
+    speech.save("google.mp3")
+    os.system("start google.mp3")
+    text2 = "In the next 9 second we will record the post you want to put on your wall"
+    speech2 = gTTS(text = text2, lang = language, slow = False)
+    speech.save("face2.mp3")
+    os.system("start face2.mp3")
+    command = None
+    with sr.Microphone() as source:
+      audio_data = r.record(source, duration=9)
+      command = r.recognize_google(audio_data)
+    text3 = "You are going to search " + command
+    speech3 = gTTS(text = text3, lang = language, slow = False)
+    speech3.save("google3.mp3")
+    os.system("start google3.mp3")
+    resume = google(command)
+    resumeSpeech = gTTS(text = resume, lang = language, slow = False)
+    resumeSpeech.save("research.mp3")
+    os.system("start research.mp3")
   #Error
   else:
-    print("Error")
+    text = "Sorry we got an error, we will have to start over"
+    speech = gTTS(text = text, lang = language, slow = False)
+    speech.save("apologize.mp3")
+    os.system("start apologize.mp3")
 
 def face(command):
   FacebookFunctions.login()
@@ -108,6 +130,6 @@ def twitter(command):
   TwitterFuctions.login()
   #TwitterFuctions.tweet(command)
 
-def google():
-  print("google")
+def google(command):
+  return GoogleSearchFunctions.search(command)
 
