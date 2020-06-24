@@ -2,11 +2,10 @@ from wit import Wit
 from gtts import gTTS 
 import os
 import app
-import facebook
+import GoogleSearchFunctions
 
-faceApiKey = os.getenv("faceKey")
 witKey = os.getenv("witApiKey")
-faceToken = os.getenv("faceAppToken")
+
 
 def wit():
   intro()
@@ -60,6 +59,9 @@ def action(command):
     print("Error")
 
 def face():
+  #faceFunctions.login()
+  #post = "Hello World"
+  #faceFunctions.postingFace(post)
   print("posted!")
 
 def twitter():
@@ -74,4 +76,4 @@ def google():
 def test():
   print("at least test works")
 
-face()
+GoogleSearchFunctions.search("Bos primigenius taurus")
