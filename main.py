@@ -2,16 +2,20 @@ from wit import Wit
 from gtts import gTTS 
 import os
 import app
+import speech_recognition as sr
 import TwitterFuctions
+import FacebookFunctions
 witKey = os.getenv("witApiKey")
+r = sr.Recognizer()
 
 
 def wit():
   intro()
   client = Wit(witKey)
   results = None
-  with open('16-122828-0002.wav', 'rb') as f:
-    results = client.speech(f, {'Content-Type': 'audio/wav'})
+  with sr.Microphone() as source:
+     audio = r.record(source, duration=5)
+     results = client.speech(audio, {'Content-Type': 'audio/wav'})
   commandID = None
   for elements in results["intents"]:
     commandID = elements["id"]
@@ -27,16 +31,12 @@ def intro():
 def readCommand(command):
   text = None
   language = "en"
-  if command == "550491782311147":
-    text = "at least test works"
-  elif command == "552986868917206":
-    text = "twitter"
-  elif command == "2002521963215550":
-    text = "youtube"
+  if command == "552986868917206":
+    text = "You have choosen twitter"
   elif command == "2988512127933065":
-    text = "facebook"
+    text = "You have choosen facebook"
   elif command == "2939217719529274":
-    text = "google"
+    text = "You have choosen to search something on google/wikipedia"
   else:
     text = "Sorry I did not get that, can you repeat it again please?"
   speech = gTTS(text = text, lang = language, slow = False)
@@ -44,35 +44,70 @@ def readCommand(command):
   return os.system("start action.mp3")
 
 def action(command):
-  if command == "550491782311147":
-    test()
-  elif command == "552986868917206":
-    twitter()
-  elif command == "2002521963215550":
-    youtube()
+  language = "en"
+  readCommand(command)
+
+  #Twitter
+  if command == "552986868917206":
+
+    text = "In the next 9 second we will record the tweet you want to post"
+    speech = gTTS(text = text, lang = language, slow = False)
+    speech.save("tweet.mp3")
+    os.system("start tweet.mp3")
+    command = None
+    with sr.Microphone() as source:
+      audio_data = r.record(source, duration=9)
+      command = r.recognize_google(audio_data)
+    text2 = "You are going to tweet " + command
+    speech2 = gTTS(text = text2, lang = language, slow = False)
+    speech2.save("tweet2.mp3")
+    os.system("start tweet2.mp3")
+    twitter(command)
+    text3 = "Your tweet has been posted!"
+    speech3 = gTTS(text = text3, lang = language, slow = False)
+    speech3.save("tweet3.mp3")
+    os.system("start tweet3.mp3")
+
+  #Facebook
   elif command == "2988512127933065":
+
+    text = "In the next 9 second we will record the post you want to put on your wall"
+    speech = gTTS(text = text, lang = language, slow = False)
+    speech.save("face.mp3")
+    os.system("start face.mp3")
+    command = None
+    with sr.Microphone() as source:
+      audio_data = r.record(source, duration=9)
+      command = r.recognize_google(audio_data)
+    text2 = "You are going to post " + command
+    speech2 = gTTS(text = text2, lang = language, slow = False)
+    speech2.save("face2.mp3")
+    os.system("start face2.mp3")
+    face(command)
+    text3 = "Your post has been posted!"
+    speech3 = gTTS(text = text3, lang = language, slow = False)
+    speech3.save("face3.mp3")
+    os.system("start face3.mp3")
+
     face()
+  
+  #Google
   elif command == "2939217719529274":
+
     google()
+
+  #Error
   else:
     print("Error")
 
-def face():
-  #faceFunctions.login()
-  #post = "Hello World"
-  #faceFunctions.postingFace(post)
-  print("posted!")
+def face(command):
+  FacebookFunctions.login()
+  FacebookFunctions.postingFace(command)
 
-def twitter():
-  print("tweeted")
-
-def youtube():
-  print("played")
+def twitter(command):
+  TwitterFuctions.login()
+  #TwitterFuctions.tweet(command)
 
 def google():
   print("google")
 
-def test():
-  print("at least test works")
-  
-TwitterFuctions.login()

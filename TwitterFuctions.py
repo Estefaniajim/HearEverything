@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from time import sleep 
 import os
 
@@ -27,5 +30,10 @@ def login():
   signinButton = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[3]/div/div').click()
   
 def tweet(comment):
+  into = browser.find_element_by_xpath('//*[@id="page-container"]/div/div[1]/form/div[2]/button')
+  into.send_keys(comment)  
+  tweet = browser.find_element_by_xpath("//span[@class='add-tweet-button ']//following-sibling::button[contains(@class,'tweet-action')]")
+  tweet.click()
+
   
 
