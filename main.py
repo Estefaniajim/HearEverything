@@ -1,136 +1,134 @@
 from wit import Wit
-from gtts import gTTS 
+from gtts import gTTS
 import os
-import app
 import speech_recognition as sr
 import TwitterFuctions
 import FacebookFunctions
 import GoogleSearchFunctions
+from dotenv import load_dotenv
 
+load_dotenv()
+# Load environment variables
 witKey = os.getenv("witApiKey")
+if not witKey:
+    raise ValueError("Wit.ai API key not found. Set 'witApiKey' as an environment variable.")
+
 r = sr.Recognizer()
 
-def wit():
-  intro()
-  client = Wit(witKey)
-  results = None
-  with sr.Microphone() as source:
-     audio = r.record(source, duration=5)
-     results = client.speech(audio, {'Content-Type': 'audio/wav'})
-  commandID = None
-  for elements in results["intents"]:
-    commandID = elements["id"]
-  return action(commandID)
+def witCall():
+    """Main function to handle voice commands using Wit.ai."""
+    print("Wit function called!")
+    intro()
+    client = Wit(witKey)
+
+    try:
+        with sr.Microphone() as source:
+            print("Listening for 7 seconds...")
+            audio = r.record(source, duration=7)
+            print("Processing audio...")
+            results = client.speech(audio.get_wav_data(), {'Content-Type': 'audio/wav'})
+        commandID = None
+        for elements in results["intents"]:
+            commandID = elements["id"]
+            break  # Use the first intent found
+
+        if commandID is None:
+            raise ValueError("No valid command found.")
+
+        print(f"Command ID: {commandID}")
+        action(commandID)
+
+    except Exception as e:
+        print(f"Error during voice command processing: {e}")
+        play_audio("Sorry, we encountered an error. Please try again.")
 
 def intro():
-  text = "Welcome to HearEverything, please tell us what do you want to do"
-  language = "en"
-  speech = gTTS(text = text, lang = language, slow = False)
-  speech.save("intro.mp3")
-  return os.system("start intro.mp3")
+    """Plays an introductory message."""
+    text = "Welcome to HearEverything, please tell us what you want to do."
+    play_audio(text)
+
+def play_audio(text):
+    """Convert text to speech and play the audio."""
+    language = "en"
+    speech = gTTS(text=text, lang=language, slow=False)
+    speech.save("output.mp3")
+    os.system("start output.mp3")
 
 def readCommand(command):
-  text = None
-  language = "en"
-  if command == "552986868917206":
-    text = "You have choosen twitter"
-  elif command == "2988512127933065":
-    text = "You have choosen facebook"
-  elif command == "2939217719529274":
-    text = "You have choosen to search something on google/wikipedia"
-  else:
-    text = "Sorry I did not get that, can you repeat it again please?"
-  speech = gTTS(text = text, lang = language, slow = False)
-  speech.save("action.mp3")
-  return os.system("start action.mp3")
+    """Reads the user's selected command."""
+    responses = {
+        "552986868917206": "You have chosen Twitter.",
+        "1135931194419043": "You have chosen Facebook.",
+        "1698371974430723": "You have chosen to search something on Google or Wikipedia.",
+    }
+    text = responses.get(command, "Sorry, I did not understand that. Can you repeat it?")
+    play_audio(text)
 
 def action(command):
-  language = "en"
-  readCommand(command)
+    """Handles the actions based on the command ID."""
+    readCommand(command)
 
-  #Twitter
-  if command == "552986868917206":
+    if command == "552986868917206":  # Twitter
+        handle_twitter_action()
 
-    text = "In the next 9 second we will record the tweet you want to post"
-    speech = gTTS(text = text, lang = language, slow = False)
-    speech.save("tweet.mp3")
-    os.system("start tweet.mp3")
-    command = None
-    with sr.Microphone() as source:
-      audio_data = r.record(source, duration=9)
-      command = r.recognize_google(audio_data)
-    text2 = "You are going to tweet " + command
-    speech2 = gTTS(text = text2, lang = language, slow = False)
-    speech2.save("tweet2.mp3")
-    os.system("start tweet2.mp3")
-    twitter(command)
-    text3 = "Your tweet has been posted!"
-    speech3 = gTTS(text = text3, lang = language, slow = False)
-    speech3.save("tweet3.mp3")
-    os.system("start tweet3.mp3")
+    elif command == "1135931194419043":  # Facebook
+        print("Facebook was choosen")
+        handle_facebook_action()
 
-  #Facebook
-  elif command == "2988512127933065":
+    if command == "1698371974430723":  # Google/Wikipedia
+        print("Google was choosen")
+        handle_google_action()
 
-    text = "In the next 9 second we will record the post you want to put on your wall"
-    speech = gTTS(text = text, lang = language, slow = False)
-    speech.save("face.mp3")
-    os.system("start face.mp3")
-    command = None
-    with sr.Microphone() as source:
-      audio_data = r.record(source, duration=9)
-      command = r.recognize_google(audio_data)
-    text2 = "You are going to post " + command
-    speech2 = gTTS(text = text2, lang = language, slow = False)
-    speech2.save("face2.mp3")
-    os.system("start face2.mp3")
-    face(command)
-    text3 = "Your post has been posted!"
-    speech3 = gTTS(text = text3, lang = language, slow = False)
-    speech3.save("face3.mp3")
-    os.system("start face3.mp3")
+    else:
+        play_audio("Sorry, we encountered an error. We will have to start over.")
 
-    face()
-  
-  #Google
-  elif command == "2939217719529274":
+def handle_twitter_action():
+    """Handles Twitter-related actions."""
+    play_audio("There si no twitter")
+    play_audio("In the next 9 seconds, we will record the tweet you want to post.")
+    # try:
+    #     with sr.Microphone() as source:
+    #         audio_data = r.record(source, duration=9)
+    #         tweet_content = r.recognize_google(audio_data)
 
-    text = "Beware, this is going to be loooooooooooong. Prepare to take notes"
-    speech = gTTS(text = text, lang = language, slow = False)
-    speech.save("google.mp3")
-    os.system("start google.mp3")
-    text2 = "In the next 9 second we will record the post you want to put on your wall"
-    speech2 = gTTS(text = text2, lang = language, slow = False)
-    speech.save("face2.mp3")
-    os.system("start face2.mp3")
-    command = None
-    with sr.Microphone() as source:
-      audio_data = r.record(source, duration=9)
-      command = r.recognize_google(audio_data)
-    text3 = "You are going to search " + command
-    speech3 = gTTS(text = text3, lang = language, slow = False)
-    speech3.save("google3.mp3")
-    os.system("start google3.mp3")
-    resume = google(command)
-    resumeSpeech = gTTS(text = resume, lang = language, slow = False)
-    resumeSpeech.save("research.mp3")
-    os.system("start research.mp3")
+    #     play_audio(f"You are going to tweet: {tweet_content}")
+    #     TwitterFuctions.login()
+    #     TwitterFuctions.post_tweet(tweet_content)
+    #     play_audio("Your tweet has been posted!")
 
-  #Error
-  else:
-    text = "Sorry we got an error, we will have to start over"
-    speech = gTTS(text = text, lang = language, slow = False)
-    speech.save("apologize.mp3")
-    os.system("start apologize.mp3")
+    # except Exception as e:
+    #     print(f"Error while handling Twitter action: {e}")
+    #     play_audio("Failed to post your tweet. Please try again.")
 
-def face(command):
-  FacebookFunctions.login()
-  FacebookFunctions.postingFace(command)
+def handle_facebook_action():
+    """Handles Facebook-related actions."""
+    play_audio("In the next 9 seconds, we will record the post you want to put on your wall.")
+    try:
+        with sr.Microphone() as source:
+            audio_data = r.record(source, duration=9)
+            post_content = r.recognize_google(audio_data)
 
-def twitter(command):
-  TwitterFuctions.login()
+        play_audio(f"You are going to post: {post_content}")
+        FacebookFunctions.login()
+        FacebookFunctions.postingFace(post_content)
+        play_audio("Your post has been posted!")
 
-def google(command):
-  return GoogleSearchFunctions.search(command)
+    except Exception as e:
+        print(f"Error while handling Facebook action: {e}")
+        play_audio("Failed to post your Facebook message. Please try again.")
 
-TwitterFuctions.login()
+def handle_google_action():
+    """Handles Google/Wikipedia search actions."""
+    play_audio("In the next 9 seconds, we will record what you want to search for.")
+    try:
+        with sr.Microphone() as source:
+            audio_data = r.record(source, duration=9)
+            search_query = r.recognize_google(audio_data)
+
+        play_audio(f"You are going to search for: {search_query}")
+        summary = GoogleSearchFunctions.search(search_query)
+        play_audio(f"Search result summary: {summary}")
+
+    except Exception as e:
+        print(f"Error while handling Google action: {e}")
+        play_audio("Failed to process your search. Please try again.")

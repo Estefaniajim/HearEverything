@@ -5,23 +5,44 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
-
-
-chrome_options = Options()
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument("--disable-notifications")
-browser = webdriver.Chrome(options=chrome_options)
-browser.get('http://www.google.com')
+from selenium.webdriver.common.by import By
 
 def search(info):
-  search = browser.find_element_by_name('q')
-  search.send_keys(info)
-  search.send_keys(Keys.RETURN)
-  time.sleep(5)
-  browser.find_element_by_partial_link_text("Wikipedia").click()
-  time.sleep(5)
-  text = browser.find_element_by_tag_name("body").get_attribute("innerText")
-  browser.quit()
-  return text
+  text = ""
+  chrome_options = Options()
+  chrome_options.add_argument('--no-sandbox')
+  chrome_options.add_argument('--no-sandbox')
+  chrome_options.add_argument("--disable-notifications")
+  browser = webdriver.Chrome(options=chrome_options)
+  browser.get('https://www.google.com/?gl=us&hl=en&pws=0&gws_rd=cr')
+  try:
+        # Wait for the search box to be available
+        search_box = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_located((By.NAME, 'q'))
+        )
+        search_box.send_keys(info)
+        search_box.send_keys(Keys.RETURN)
 
+        # Wait for the Wikipedia link and click it
+        wiki_link = WebDriverWait(browser, 20).until(
+            EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'Wikipedia'))
+        )
+        wiki_link.click()
+
+        # Wait for the page body to load
+        page_body = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_located((By.TAG_NAME, 'body'))
+        )
+        page_container = browser.find_element(By.XPATH, '//*[@class="mw-page-container"]')
+        elements = page_container.find_elements(by='css selector', value='p')
+        count = 1
+        for element in elements:
+          tag_name = element.tag_name
+          if count and tag_name == 'p':
+            text += element.text
+            text += ' '
+            count -= 1
+  finally:
+    # Quit the browser
+    browser.quit()
+  return text
